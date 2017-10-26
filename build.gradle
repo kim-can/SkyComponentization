@@ -5,19 +5,42 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "com.android.tools.build:gradle:$localGradlePluginVersion"
+        classpath "com.jakewharton:butterknife-gradle-plugin:$localButterknifeVersion"
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+
+        //中央库-快照
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+//时间：2018.10.16；每次修改版本号都要添加修改时间
+ext {
+    // Sdk and tools
+    //localBuildToolsVersion是gradle.properties中的数据
+    buildToolsVersion = localBuildToolsVersion
+    compileSdkVersion = 26
+    minSdkVersion = 16
+    targetSdkVersion = 26
+    versionCode = 1
+    versionName = "1.0"
+    javaVersion = JavaVersion.VERSION_1_8
+
+
+    //检查时间：2010.10.26
+    butterknifeVersion = localButterknifeVersion
+    routerVersion = "1.2.4"
+    annotationProcessor = "1.0.4"
+
 }

@@ -8,3 +8,5 @@
 /build
 /captures
 .externalNativeBuild
+src/main/java/
+src/main/res/drawable/

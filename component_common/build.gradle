@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+
+}
+
+// sky架构 SNAPSHOT快照版本 - 检查依赖包是否有最新的包进行下载
+configurations.all {
+    // Check for updates every build
+    resolutionStrategy.cacheChangingModulesFor 24, 'hours'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.jincanshen:sky:3.0.0-SNAPSHOT'
+    //router
+    compile "com.alibaba:arouter-api:$rootProject.routerVersion"
+}
