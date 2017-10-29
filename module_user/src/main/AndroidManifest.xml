@@ -3,8 +3,15 @@
 
     <application
         android:theme="@style/AppTheme">
+
+        <!--用户信息-->
         <activity
             android:name=".UserActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--登录-->
+        <activity
+            android:name=".LoginActivity"
             android:screenOrientation="portrait"/>
     </application>
 

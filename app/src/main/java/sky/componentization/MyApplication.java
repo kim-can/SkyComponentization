@@ -1,15 +1,8 @@
 package sky.componentization;
 
 import android.content.Context;
-import android.os.Environment;
 import android.support.multidex.MultiDex;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-
-import java.io.File;
-
-import jc.sky.SKYHelper;
-import jc.sky.modules.log.L;
 import sky.common.CommonApplication;
 
 /**
@@ -26,10 +19,20 @@ public class MyApplication extends CommonApplication {
 
 	/**
 	 * 不打印日志
+	 * 
 	 * @return
 	 */
 	@Override public boolean isLogOpen() {
-		return false;
+		boolean bool = false;
+		switch (BuildConfig.isDebug) {
+			case 1:// 线上环境
+				bool = super.isLogOpen();
+				break;
+			case 0:// 测试环境
+				bool = false;
+				break;
+		}
+		return bool;
 	}
 
 	@Override protected void attachBaseContext(Context base) {

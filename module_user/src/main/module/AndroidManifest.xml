@@ -19,5 +19,39 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".SchemeFilterActivity">
+
+            <!-- Schame -->
+            <intent-filter>
+                <data
+                    android:host="sky.user.com"
+                    android:scheme="sky"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+
+            <!-- App Links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="m.sky.com"
+                    android:scheme="http"/>
+                <data
+                    android:host="m.sky.com"
+                    android:scheme="https"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

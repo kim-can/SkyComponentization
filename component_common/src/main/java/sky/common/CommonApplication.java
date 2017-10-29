@@ -8,12 +8,10 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import java.io.File;
 
 import jc.sky.ISKYBind;
-import jc.sky.SKYApplication;
 import jc.sky.SKYHelper;
 import jc.sky.modules.SKYModulesManage;
 import jc.sky.modules.log.L;
 import jc.sky.modules.methodProxy.SKYMethods;
-import jc.sky.view.common.SKYIViewCommon;
 import retrofit2.Retrofit;
 
 /**
@@ -52,6 +50,7 @@ public class CommonApplication extends Application implements ISKYBind {
 	}
 
 	@Override public Retrofit getRestAdapter(Retrofit.Builder builder) {
+		builder.baseUrl("https://www.jincanshen.com");
 		return builder.build();
 	}
 

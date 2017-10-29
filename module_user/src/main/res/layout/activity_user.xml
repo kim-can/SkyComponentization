@@ -37,7 +37,7 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:text="扥估"
+        android:text="登录"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
