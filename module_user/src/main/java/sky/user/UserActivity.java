@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import jc.sky.SKYHelper;
 import jc.sky.view.SKYActivity;
 import jc.sky.view.SKYBuilder;
 import jc.sky.view.model.SKYConstants;
@@ -47,7 +48,8 @@ public class UserActivity extends SKYActivity<UserBiz> {
 	}
 
 	@OnClick(R2.id.btn_login) public void onViewClicked() {
-		biz().loadUserInfo();
+//		biz().loadUserInfo();
+		SKYHelper.moduleBiz("MainBiz").method("showTip").run(userName);
 	}
 
 	public void setInfo(String name, String pwd, String age) {

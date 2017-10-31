@@ -42,6 +42,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':component_common')
+    // sky注解解析
+    annotationProcessor "com.jincanshen:sky-compiler:$rootProject.skyVersion"
     // butter注解解析
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     // router注解解析

@@ -39,6 +39,7 @@ ext {
 
 
     //检查时间：2010.10.26
+    skyVersion = "3.1.0-SNAPSHOT";
     butterknifeVersion = localButterknifeVersion
     routerVersion = "1.2.4"
     annotationProcessor = "1.0.4"
