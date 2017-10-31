@@ -8,13 +8,6 @@
 
 ![image](https://github.com/skyJinc/SkyComponentization/blob/master/picture/2.png)
 
-
-## 组件之间资源名
-    //设置了resourcePrefix值后，所有的资源名必须以指定的字符串做前缀，否则会报错。
-    //但是resourcePrefix这个值只能限定xml里面的资源，并不能限定图片资源，所有图片资源仍然需要手动去修改资源名。
-    resourcePrefix "girls_"
-
-
 ## 说明
 
     1.app壳 - 空壳工程，没有任何的业务代码，也不能有Activity 
