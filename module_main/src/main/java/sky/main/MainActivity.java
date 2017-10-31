@@ -1,21 +1,13 @@
 package sky.main;
 
 import android.os.Bundle;
-import android.support.v4.util.SimpleArrayMap;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 
-import com.alibaba.android.arouter.facade.enums.TypeKind;
 import com.alibaba.android.arouter.launcher.ARouter;
-
-import java.util.concurrent.ConcurrentHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import jc.sky.SKYHelper;
-import jc.sky.modules.log.L;
-import jc.sky.modules.structure.SKYStructureModel;
 import jc.sky.view.SKYActivity;
 import jc.sky.view.SKYBuilder;
 
