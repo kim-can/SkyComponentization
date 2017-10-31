@@ -2,7 +2,7 @@
 
 ## 结构图
 
- ![image](https://github.com/skyJinc/SkyComponentization/blob/master/picture/1.png)
+![image](https://github.com/skyJinc/SkyComponentization/blob/master/picture/1.png)
 
 ## 模块关系图
 
@@ -38,3 +38,7 @@
 	    4.res 共用资源也放到这里
     6.混淆问题
         组件化项目的Java代码混淆方案采用在集成模式下集中在app壳工程中混淆，各个业务组件不配置混淆文件
+    7.组件之间资源名
+        //设置了resourcePrefix值后，所有的资源名必须以指定的字符串做前缀，否则会报错。
+        //但是resourcePrefix这个值只能限定xml里面的资源，并不能限定图片资源，所有图片资源仍然需要手动去修改资源名。
+        resourcePrefix "girls_"
