@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import jc.sky.SKYHelper;
 import jc.sky.view.SKYActivity;
 import jc.sky.view.SKYBuilder;
 
@@ -31,7 +32,7 @@ public class MainActivity extends SKYActivity<MainBiz> {
 	@OnClick({ R2.id.btn_oder, R2.id.btn_user ,R2.id.btn_login}) public void onViewClicked(View id) {
 		int i = id.getId();
 		if (i == R.id.btn_oder) {
-//			SKYHelper.moduleBiz("OderBiz").method("showTip").run("我被执行啦");
+			SKYHelper.moduleBiz("OderBiz").method("showTip").run("我被执行啦");
 
 //			ARouter.getInstance().build("/oder1/list1").navigation();
 		} else if (i == R.id.btn_user) {

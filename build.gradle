@@ -18,6 +18,13 @@ allprojects {
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+
+        //本地库
+        maven {
+//            url "http://localhost:8081/nexus/content/groups/SkyLocal/",
+            //本地快照
+            url "http://localhost:8081/nexus/content/repositories/snapshots/"
+        }
     }
 }
 
@@ -27,6 +34,10 @@ task clean(type: Delete) {
 
 //时间：2018.10.16；每次修改版本号都要添加修改时间
 ext {
+
+    // module
+    commonVersion = "1.0.0-SNAPSHOT"
+
     // Sdk and tools
     //localBuildToolsVersion是gradle.properties中的数据
     buildToolsVersion = localBuildToolsVersion
@@ -36,7 +47,6 @@ ext {
     versionCode = 1
     versionName = "1.0"
     javaVersion = JavaVersion.VERSION_1_8
-
 
     //检查时间：2010.10.26
     skyVersion = "3.1.0-SNAPSHOT";

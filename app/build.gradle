@@ -6,15 +6,16 @@ android {
         release {
             keyAlias 'jincan'
             keyPassword 'jincan'
-            storeFile file('keystore/key.jks')
+            storeFile file('app/keystore/key.jks')
             storePassword 'jincan'
         }
     }
 
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
-        applicationId "sky.componentization"
+        applicationId "sky.main"
 
         minSdkVersion rootProject.ext.minSdkVersion
 
@@ -62,7 +63,6 @@ android {
             proguardFile("proguard/proguard-pinyin.pro")
             proguardFile("proguard/proguard-retrofit2.pro")
             proguardFile("proguard/proguard-support-v7.pro")
-            proguardFile("proguard/proguard-tinker.pro")
             proguardFile("proguard/proguard-umeng.pro")
             proguardFile("proguard/proguard-weibo.pro")
             proguardFile("proguard/proguard-baidu.pro")
@@ -86,16 +86,28 @@ android {
         }
     }
 }
+configurations.all {
+    // Check for updates every build
+    resolutionStrategy.cacheChangingModulesFor 0, 'hours'
+}
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:multidex:1.0.1'
     if (isModule.toBoolean()) {
         compile project(':component_common')
+        //本地maven私库 测试
+//        compile "com.sky:cpt-common:$rootProject.commonVersion"
     } else {
         compile project(':module_main')
         compile project(':module_oder')
         compile project(':module_user')
+
+        //本地maven私库 测试
+//        compile "com.sky:module-main:$rootProject.commonVersion"
+//        compile "com.sky:module-order:$rootProject.commonVersion"
+//        compile "com.sky:module-user:$rootProject.commonVersion"
     }
 
 }

@@ -43,6 +43,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':component_common')
+    //本地maven私库 测试
+//  compile "com.sky:cpt-common:$rootProject.commonVersion"
     // sky注解解析
     annotationProcessor "com.jincanshen:sky-compiler:$rootProject.skyVersion"
     // butter注解解析
@@ -50,3 +52,5 @@ dependencies {
     // router注解解析
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.annotationProcessor"
 }
+
+apply from: rootProject.file('module_user/maven/gradle-mvn-push.gradle')//本地库打包

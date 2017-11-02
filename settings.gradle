@@ -1,1 +1,2 @@
-include ':app', ':module_user', ':module_oder', ':component_common', ':module_main'
+include ':app', ':module_user', ':module_oder', ':module_main',':component_common'
+//include ':app'
