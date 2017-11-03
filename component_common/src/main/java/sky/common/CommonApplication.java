@@ -4,6 +4,8 @@ import android.app.Application;
 import android.os.Environment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 
@@ -13,6 +15,7 @@ import jc.sky.modules.SKYModulesManage;
 import jc.sky.modules.log.L;
 import jc.sky.modules.methodProxy.SKYMethods;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author sky
@@ -50,7 +53,10 @@ public class CommonApplication extends Application implements ISKYBind {
 	}
 
 	@Override public Retrofit getRestAdapter(Retrofit.Builder builder) {
-		builder.baseUrl("https://www.jincanshen.com");
+		builder.baseUrl("https://api.github.com");
+
+		Gson gson = new GsonBuilder().setLenient().create();
+		builder.addConverterFactory(GsonConverterFactory.create(gson));
 		return builder.build();
 	}
 

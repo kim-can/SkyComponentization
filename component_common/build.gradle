@@ -18,6 +18,8 @@ dependencies {
     compile "com.jincanshen:sky:$rootProject.skyVersion"
     //router
     compile "com.alibaba:arouter-api:$rootProject.routerVersion"
+    // retrofit2 - gson
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
 }
 
 apply from: rootProject.file('component_common/maven/gradle-mvn-push.gradle')//本地库打包
