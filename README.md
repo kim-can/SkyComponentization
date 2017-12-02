@@ -36,3 +36,10 @@
         //设置了resourcePrefix值后，所有的资源名必须以指定的字符串做前缀，否则会报错。
         //但是resourcePrefix这个值只能限定xml里面的资源，并不能限定图片资源，所有图片资源仍然需要手动去修改资源名。
         resourcePrefix "girls_"
+        
+## 项目运行
+
+
+    1.搭建本地maven仓库 `http://www.jianshu.com/p/b1fe26d5b8c8
+    2.配置本地maven仓库 maven{ url "http://localhost:8081/nexus/content/repositories/snapshots/" }
+    3.isRunAlone 切换 集成和组件模式
