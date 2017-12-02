@@ -40,6 +40,6 @@
 ## 项目运行
 
 
-    1.搭建本地maven仓库 `http://www.jianshu.com/p/b1fe26d5b8c8
+    1.搭建本地maven仓库 [地址](http://www.jianshu.com/p/b1fe26d5b8c8)  
     2.配置本地maven仓库 maven{ url "http://localhost:8081/nexus/content/repositories/snapshots/" }
     3.isRunAlone 切换 集成和组件模式
