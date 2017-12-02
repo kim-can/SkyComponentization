@@ -4,21 +4,23 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.facade.annotation.Autowired;
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import jc.sky.SKYHelper;
-import jc.sky.view.SKYActivity;
-import jc.sky.view.SKYBuilder;
-import jc.sky.view.model.SKYConstants;
-import sky.common.SkyConstents;
+import sky.OpenDisplay;
+import sky.common.display.CheckDisplay;
+import sky.core.SKYActivity;
+import sky.core.SKYBuilder;
+import sky.core.SKYHelper;
 
-@Route(path = "/user/info", extras = SkyConstents.LOGIN_EXTRA)
 public class UserActivity extends SKYActivity<UserBiz> {
+
+	@OpenDisplay public static final void intent(String name, String pwd, int age) {
+		Bundle bundle = new Bundle();
+		bundle.putString("name", name);
+		bundle.putString("pwd", pwd);
+		bundle.putInt("age", age);
+		SKYHelper.display(CheckDisplay.class).intent(UserActivity.class, bundle);
+	}
 
 	@BindView(R2.id.tv_name) TextView		tvName;
 
@@ -28,28 +30,24 @@ public class UserActivity extends SKYActivity<UserBiz> {
 
 	@BindView(R2.id.btn_login) Button		btnLogin;
 
-	@Autowired(name = "name") public String	userName;
-
-	@Autowired(name = "pwd") public String	password;
-
-	@Autowired(name = "age") public int		age;
-
-	@Override protected SKYBuilder build(SKYBuilder initialSKYBuilder) {
+	@Override protected sky.core.SKYBuilder build(SKYBuilder initialSKYBuilder) {
 		initialSKYBuilder.layoutId(R.layout.activity_user);
 		return initialSKYBuilder;
 	}
 
 	@Override protected void initData(Bundle savedInstanceState) {
-		ARouter.getInstance().inject(this);
 
-		tvName.setText("用户名:" + userName);
-		tvPassword.setText("密码:" + password);
-		tvAge.setText("年龄:" + age);
+		if (savedInstanceState == null) {
+			return;
+		}
+		tvName.setText("用户名:" + savedInstanceState.getString("name"));
+		tvPassword.setText("密码:" + savedInstanceState.getString("pwd"));
+		tvAge.setText("年龄:" + savedInstanceState.getInt("age"));
 	}
 
 	@OnClick(R2.id.btn_login) public void onViewClicked() {
-//		biz().loadUserInfo();
-		SKYHelper.moduleBiz("MainBiz").method("showTip").run(userName);
+		// biz().loadUserInfo();
+		SKYHelper.moduleBiz("MainBiz").method("showTip").run(tvName.getText().toString());
 	}
 
 	public void setInfo(String name, String pwd, String age) {

@@ -4,10 +4,10 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-import jc.sky.core.SKYBiz;
 import retrofit2.Call;
 import sky.Background;
 import sky.BackgroundType;
+import sky.core.SKYBiz;
 import sky.oder.adapter.OderAdapter;
 import sky.oder.http.GithubHttp;
 
@@ -17,7 +17,7 @@ public class OderBiz extends SKYBiz<OderActivity> {
 		super.initBiz(bundle);
 	}
 
-	@Background(BackgroundType.SINGLEWORK) public void loadasdfsadf() {
+	@Background(BackgroundType.SINGLEWORK) public void load() {
 
 		Call<Object> limitModelCall = http(GithubHttp.class).rateLimit();
 		Object limitModel = httpBody(limitModelCall);

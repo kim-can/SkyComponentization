@@ -3,9 +3,12 @@
 buildscript {
     repositories {
         jcenter()
+        google()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$localGradlePluginVersion"
+        classpath 'sky:module-plugin:3.1.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "com.jakewharton:butterknife-gradle-plugin:$localButterknifeVersion"
     }
 }
@@ -13,7 +16,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-
+        google()
+        mavenCentral()
         //中央库-快照
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
@@ -21,7 +25,7 @@ allprojects {
 
         //本地库
         maven {
-//            url "http://localhost:8081/nexus/content/groups/SkyLocal/",
+////            url "http://localhost:8081/nexus/content/groups/SkyLocal/",
             //本地快照
             url "http://localhost:8081/nexus/content/repositories/snapshots/"
         }
@@ -34,24 +38,24 @@ task clean(type: Delete) {
 
 //时间：2018.10.16；每次修改版本号都要添加修改时间
 ext {
-
-    // module
-    commonVersion = "1.0.0-SNAPSHOT"
+    // 每次更改“isRunAlone”的值后，需要点击 "Sync Project" 按钮
+    // isRunAlone是“集成开发模式”和“组件开发模式”的切换开关  true "组件开发模式"  false "集成开发模式"
+    isRunAlone = false
+    // sky架构版本
+    skyVersion = "3.1.0-SNAPSHOT"
 
     // Sdk and tools
     //localBuildToolsVersion是gradle.properties中的数据
     buildToolsVersion = localBuildToolsVersion
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     minSdkVersion = 16
-    targetSdkVersion = 26
+    targetSdkVersion = 27
     versionCode = 1
     versionName = "1.0"
     javaVersion = JavaVersion.VERSION_1_8
 
     //检查时间：2010.10.26
-    skyVersion = "3.1.0-SNAPSHOT";
     butterknifeVersion = localButterknifeVersion
-    routerVersion = "1.2.4"
     annotationProcessor = "1.0.4"
-
+    converterGson = "2.2.0"
 }

@@ -1,71 +1,65 @@
 package sky.common;
 
 import android.app.Application;
-import android.os.Environment;
+import android.os.Bundle;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.File;
+import java.lang.reflect.Method;
 
-import jc.sky.ISKYBind;
-import jc.sky.SKYHelper;
-import jc.sky.modules.SKYModulesManage;
-import jc.sky.modules.log.L;
-import jc.sky.modules.methodProxy.SKYMethods;
+import jc.sky.SKYExtraHelper;
+import jc.sky.modules.SKYExtraModulesManage;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import sky.common.display.CheckDisplay;
+import sky.core.ISky;
+import sky.core.SKYHelper;
+import sky.core.SKYModulesManage;
+import sky.core.SKYPlugins;
+import sky.core.plugins.DisplayStartInterceptor;
 
 /**
  * @author sky
  * @version 1.0 on 2017-10-26 上午11:04
  * @see CommonApplication
  */
-public class CommonApplication extends Application implements ISKYBind {
+public class CommonApplication extends Application implements ISky {
 
 	@Override public void onCreate() {
 		super.onCreate();
 		// sky架构
-		SKYHelper.newBind().setSkyBind(this).Inject(this);
-		// 文件初始化
-		File filesDir;
-		if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
-			// We can read and write the media
-			filesDir = getExternalFilesDir(null);
-		} else {
-			// Load another directory, probably local memory
-			filesDir = getFilesDir();
-		}
-		if (filesDir != null) {
-			SKYHelper.fileCacheManage().configureCustomerCache(filesDir);
-		}
-
-		// 路由器
-		ARouter.init(this);
+		SKYExtraHelper.newSky().setSky(this).Inject(this);
 	}
 
 	@Override public boolean isLogOpen() {
-		L.plant(new L.DebugTree());
-		ARouter.openDebug();
-		ARouter.openLog();
 		return true;
 	}
 
-	@Override public Retrofit getRestAdapter(Retrofit.Builder builder) {
+	@Override public Retrofit.Builder httpAdapter(Retrofit.Builder builder) {
 		builder.baseUrl("https://api.github.com");
 
 		Gson gson = new GsonBuilder().setLenient().create();
 		builder.addConverterFactory(GsonConverterFactory.create(gson));
-		return builder.build();
+		return builder;
 	}
 
-	@Override public SKYMethods getMethodInterceptor(SKYMethods.Builder builder) {
-		return builder.build();
+	@Override public SKYPlugins.Builder pluginInterceptor(SKYPlugins.Builder builder) {
+		builder.setDisplayStartInterceptor(new DisplayStartInterceptor() {
 
+			@Override public <T> boolean interceptStart(String s, Class<T> aClass, Method method, int i, String s1, Bundle bundle) {
+				if (aClass.equals(CheckDisplay.class)) {
+					return SKYHelper.moduleBiz("CheckBiz").method("checkLogin").run();
+
+				}
+				return true;
+			}
+		});
+		return builder;
 	}
 
-	@Override public SKYModulesManage getModulesManage() {
-		return new SKYModulesManage();
+	@Override public SKYModulesManage modulesManage() {
+		return new SKYExtraModulesManage();
 	}
+
 }

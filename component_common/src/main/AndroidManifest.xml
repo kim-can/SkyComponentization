@@ -18,10 +18,6 @@
 
     <application>
 
-        <meta-data
-            android:name="sky.common.glide.OkHttpGlideModule"
-            android:value="GlideModule"/>
-
     </application>
 
 </manifest>

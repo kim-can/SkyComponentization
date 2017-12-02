@@ -1,16 +1,13 @@
 package sky.main;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-
-import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import jc.sky.SKYHelper;
-import jc.sky.view.SKYActivity;
-import jc.sky.view.SKYBuilder;
+import sky.core.SKYActivity;
+import sky.core.SKYBuilder;
+import sky.core.SKYHelper;
 
 public class MainActivity extends SKYActivity<MainBiz> {
 
@@ -20,33 +17,23 @@ public class MainActivity extends SKYActivity<MainBiz> {
 
 	@BindView(R2.id.btn_login) Button	btnLogin;
 
-	@Override protected SKYBuilder build(SKYBuilder initialSKYBuilder) {
-		initialSKYBuilder.layoutId(R.layout.activity_main);
+	@Override protected sky.core.SKYBuilder build(SKYBuilder initialSKYBuilder) {
+		initialSKYBuilder.layoutId(R.layout.main_activity_main);
 		return initialSKYBuilder;
 	}
 
-	@Override protected void initData(Bundle savedInstanceState) {
+	@Override protected void initData(Bundle savedInstanceState) {}
+
+	@OnClick(R2.id.btn_oder) public void onBtnOderClicked() {
+		SKYHelper.moduleDisplay("OderActivity").method("intent").run();
+	}
+
+	@OnClick(R2.id.btn_user) public void onBtnUserClicked() {
+		SKYHelper.moduleDisplay("UserActivity").method("intent").run("sky","jc123",20);
 
 	}
 
-	@OnClick({ R2.id.btn_oder, R2.id.btn_user ,R2.id.btn_login}) public void onViewClicked(View id) {
-		int i = id.getId();
-		if (i == R.id.btn_oder) {
-			SKYHelper.moduleBiz("OderBiz").method("showTip").run("我被执行啦");
-
-//			ARouter.getInstance().build("/oder1/list1").navigation();
-		} else if (i == R.id.btn_user) {
-			ARouter.getInstance().build("/user/info").withString("name", "jincan").withString("pwd", "jincan12345").withInt("age", 12).navigation();
-		} else if (i == R.id.btn_login) {
-			ARouter.getInstance().build("/user/login").navigation();
-
-		}
-//		ConcurrentHashMap<String,Object> stringObjectConcurrentHashMap = new ConcurrentHashMap<>();
-//		stringObjectConcurrentHashMap.put("OderBiz",new String("aaaaa"));
-//		stringObjectConcurrentHashMap.put("OderBiz1",new Integer(1));
-//
-//		L.i("jincan:"+new String("OderBiz").getClass().hashCode());
-//		L.i("jincan:"+new String("OderBiz").getClass().hashCode());
-
+	@OnClick(R2.id.btn_login) public void onBtnLoginClicked() {
+		SKYHelper.moduleDisplay("LoginActivity").method("intent").run();
 	}
 }

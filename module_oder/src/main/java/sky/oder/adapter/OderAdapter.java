@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import jc.sky.view.SKYActivity;
-import jc.sky.view.adapter.recycleview.SKYHolder;
-import jc.sky.view.adapter.recycleview.SKYRVAdapter;
+import sky.core.SKYActivity;
+import sky.core.SKYHolder;
+import sky.core.SKYRVAdapter;
 import sky.oder.R;
 import sky.oder.R2;
 

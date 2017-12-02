@@ -3,16 +3,20 @@ package sky.oder;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.util.ArrayList;
 
-import jc.sky.view.SKYActivity;
-import jc.sky.view.SKYBuilder;
+import sky.OpenDisplay;
+import sky.core.SKYActivity;
+import sky.core.SKYBuilder;
+import sky.core.SKYHelper;
+import sky.core.SKYIDisplay;
 import sky.oder.adapter.OderAdapter;
 
-@Route(path = "/oder1/list1")
 public class OderActivity extends SKYActivity<OderBiz> {
+
+	@OpenDisplay public static final void intent() {
+		SKYHelper.display(SKYIDisplay.class).intent(OderActivity.class);
+	}
 
 	@Override protected SKYBuilder build(SKYBuilder initialSKYBuilder) {
 		initialSKYBuilder.layoutId(R.layout.activity_oder);

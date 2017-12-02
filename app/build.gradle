@@ -88,26 +88,26 @@ android {
 }
 configurations.all {
     // Check for updates every build
-    resolutionStrategy.cacheChangingModulesFor 24, 'hours'
+    resolutionStrategy.cacheChangingModulesFor 0, 'hours'
 }
 
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:multidex:1.0.1'
-    if (isModule.toBoolean()) {
+    if (rootProject.ext.isRunAlone) {
         compile project(':component_common')
         //本地maven私库 测试
-//        compile "com.sky:cpt-common:$rootProject.commonVersion"
+        compile "com.sky:cpt-common:1.0.0-SNAPSHOT"
     } else {
-        compile project(':module_main')
-        compile project(':module_oder')
-        compile project(':module_user')
+//        compile project(':module_main')
+//        compile project(':module_oder')
+//        compile project(':module_user')
 
         //本地maven私库 测试
-//        compile "com.sky:module-main:$rootProject.commonVersion"
-//        compile "com.sky:module-order:$rootProject.commonVersion"
-//        compile "com.sky:module-user:$rootProject.commonVersion"
+        compile "com.sky:module-main:1.0.0-SNAPSHOT"
+        compile "com.sky:module-order:1.0.0-SNAPSHOT"
+        compile "com.sky:module-user:1.0.0-SNAPSHOT"
     }
 
 }

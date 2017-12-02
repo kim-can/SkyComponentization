@@ -2,11 +2,9 @@ package sky.user;
 
 import android.os.Bundle;
 
-import jc.sky.SKYHelper;
-import jc.sky.core.SKYBiz;
 import sky.Background;
 import sky.BackgroundType;
-import sky.OpenBiz;
+import sky.core.SKYBiz;
 
 public class UserBiz extends SKYBiz<UserActivity> {
 
