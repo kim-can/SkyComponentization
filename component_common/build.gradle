@@ -16,7 +16,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // retrofit2 - gson
-    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
 }
 
